@@ -7,11 +7,38 @@ void yyerror(char *);
 
 %}
 
+/* Definicoes */
+
+DIGITO [0-9]
+INT    {DIGITO}+
+FLOAT  {DIGITO}+\.{DIGITO}+
+
 
 %%
 
+	       /* Regras */
 
+\"([A-Za-z0-9]|\ )+\" { return(STRING);}
 
+{INT} { return(INT);}
+
+{FLOAT} {return(FLOAT);}
+
+\: {return(':');}
+
+\, {return(',');}
+
+\[ {return('[');}
+
+\] {return(']');}
+
+\{ {return('{');}
+
+\} {return('}');}
+
+\n ;
+
+. ;
 %%
 
 int yywrap() {
